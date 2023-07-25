@@ -1,0 +1,11 @@
+设置ssh root密码登录：
+vim /etc/ssh/sshd_config
+Permit RootLogin
+PasswordAuthentication
+
+passwd
+
+systemctl restart ssh
+
+
+移动：
