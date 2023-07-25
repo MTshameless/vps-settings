@@ -1,0 +1,28 @@
+1.安装nginx
+sudo apt update
+sudo apt install nginx
+sudo systemctl status nginx
+
+2.nginx配置
+在/etc/nginx/sites-available下新建一个配置文件xxx.conf
+server {
+    listen 80;
+    server_name cloud.marwen.buzz;
+
+    location / {
+        proxy_pass http://127.0.0.1:9000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+
+3.创建一个符号链接，指向站点启用目录中创建的配置文件。
+sudo ln -s /etc/nginx/sites-available/cloud.marwen.buzz.conf /etc/nginx/sites-enabled/
+
+4.测试重启nginx
+sudo nginx -t
+sudo systemctl reload nginx
+
+5.启动python静态服务器，在9000端口
