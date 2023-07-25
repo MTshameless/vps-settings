@@ -39,9 +39,6 @@ jupyter notebook
 sudo apt update
 sudo apt install python3 python3-pip
 sudo pip3 install jupyter
-jupyter notebook --generate-config
-jupyter notebook password
-nano ~/.jupyter/jupyter_notebook_config.py
-c.NotebookApp.ip = '0.0.0.0'
-jupyter notebook
+jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser
+
 
