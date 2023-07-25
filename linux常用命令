@@ -1,11 +1,25 @@
-设置ssh root密码登录：
+1.设置ssh root密码登录：
 vim /etc/ssh/sshd_config
 Permit RootLogin
 PasswordAuthentication
-
 passwd
-
 systemctl restart ssh
 
 
-移动：
+2.删除小于200M的文件
+find . -type f -size -200M -delete
+find：用于查找文件和目录。
+.：代表当前目录，即要进行搜索和删除操作的目录。
+-type f：表示只查找普通文件（排除目录、符号链接等）。
+-size -200M：表示搜索文件大小小于200M的文件。
+-delete：表示删除搜索到的文件。
+
+3.将文件夹中含有特定文字的文件移动到另一个指定的文件夹中
+find . -type f -name "*specific_text*" -exec mv {} /path/to/destination_folder \;
+
+4.删除当前文件夹中的所有空文件夹
+find . -type d -empty -exec rmdir {} \;
+
+5.当前文件夹下子目录当中的所有文件移动到当前文件夹下
+find . -mindepth 2 -type f -exec mv -t . {} +
+
