@@ -2,7 +2,7 @@
 bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)
 
 2.alist: 
-bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)
+curl -fsSL "https://alist.nn.ci/v3.sh" | bash -s install
 
 3.vps测试
 bash <(wget -qO- bash.spiritlhl.net/ecs)
