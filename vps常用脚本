@@ -9,6 +9,8 @@ bash <(wget -qO- bash.spiritlhl.net/ecs)
 
 4.rclone
 curl https://rclone.org/install.sh | sudo bash
+apt install fuse -y
+apt install fuse3 -y
 wget -N git.io/rcloned && nano rcloned
 mv rcloned /etc/init.d/rcloned
 chmod +x /etc/init.d/rcloned
