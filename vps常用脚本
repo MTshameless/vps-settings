@@ -23,21 +23,7 @@ on-download-complete=/root/.aria2c/upload.sh
 nano /root/.aria2c/script.conf
 drive-name=
 
-6.jupyter 安装
-sudo apt update
-sudo apt install python3 python3-pip
-sudo pip3 install jupyter
-jupyter notebook --generate-config
-python3 -c "from notebook.auth import passwd; print(passwd())"
-nano ~/.jupyter/jupyter_notebook_config.py
-c.NotebookApp.password = '生成的密码哈希'
-jupyter notebook --generate-config
-nano ~/.jupyter/jupyter_notebook_config.py
-在配置文件中，搜索 c.NotebookApp.ip，并取消注释该行。
-c.NotebookApp.ip = '0.0.0.0'
-jupyter notebook
-
-7.jupyter 安装（azure)
+6.jupyter 安装（azure)
 sudo apt update
 sudo apt install python3 python3-pip
 sudo pip3 install jupyter
