@@ -23,3 +23,11 @@ find . -type d -empty -exec rmdir {} \;
 5.当前文件夹下子目录当中的所有文件移动到当前文件夹下
 find . -mindepth 2 -type f -exec mv -t . {} +
 
+6.新建sudo用户’
+adduser new_username
+sudo usermod -aG sudo new_username
+su - new_username
+
+
+
+
