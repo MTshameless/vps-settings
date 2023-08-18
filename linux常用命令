@@ -34,56 +34,56 @@ find . -maxdepth 1 -type f -size +5G -size -20G -exec mv {} /path/to/destination
 8.rclone挂载
 rclone mount local_disk1: /path/to/mount/point1 &
 
-使用 `/etc/fstab` 来挂载硬盘是一种更稳定和持久的方法，它会在系统启动时自动挂载硬盘。以下是在Ubuntu上使用 `/etc/fstab` 挂载硬盘的步骤：
+9.使用 `/etc/fstab` 来挂载硬盘是一种更稳定和持久的方法，它会在系统启动时自动挂载硬盘。以下是在Ubuntu上使用 `/etc/fstab` 挂载硬盘的步骤：
 
-1. **获取硬盘的UUID或标签**：
-
-   在挂载硬盘时，你需要知道硬盘的UUID（通用唯一识别码）或者标签（Label）。你可以使用以下命令来获取硬盘的UUID：
-
-   ```bash
-   sudo blkid
-   ```
-
-   或者你也可以为硬盘设置一个标签，使用以下命令为硬盘设置一个标签：
-
-   ```bash
-   sudo e2label /dev/sdX new_label
-   ```
-
-2. **编辑 `/etc/fstab` 文件**：
-
-   打开 `/etc/fstab` 文件进行编辑，你可以使用任何文本编辑器，如 `nano` 或 `vim`：
-
-   ```bash
-   sudo nano /etc/fstab
-   ```
-
-   在文件的末尾添加类似以下行来挂载硬盘：
-
-   ```plaintext
-   UUID=your_uuid_or_label /path/to/mount/point filesystem defaults 0 0
-   ```
-
-   将 `your_uuid_or_label` 替换为你的硬盘的UUID或标签，将 `/path/to/mount/point` 替换为你想要挂载的目标路径，`filesystem` 替换为文件系统类型（比如 ext4、ntfs 等）。`defaults` 表示使用默认的挂载选项，`0 0` 表示不进行备份和检查。
-
-   例如：
-
-   ```plaintext
-   UUID=12345678-1234-1234-1234-123456789abc /mnt/mydisk ext4 defaults 0 0
-   ```
-
-3. **保存并退出编辑器**：
-
-   在 `nano` 编辑器中，按下 `Ctrl + O` 来保存文件，然后按下 `Enter`，最后按下 `Ctrl + X` 来退出编辑器。
-
-4. **测试挂载**：
-
-   运行以下命令来测试挂载：
-
-   ```bash
-   sudo mount -a
-   ```
-
-   如果没有报错，那么挂载就应该成功了。如果有错误，检查 `/etc/fstab` 中的内容是否正确。
-
-现在，当你重新启动系统时，硬盘应该会自动挂载到指定的目录下。使用 `/etc/fstab` 进行挂载比使用 `rclone` 挂载更稳定，适合持久化存储的需求。
+      1. **获取硬盘的UUID或标签**：
+      
+         在挂载硬盘时，你需要知道硬盘的UUID（通用唯一识别码）或者标签（Label）。你可以使用以下命令来获取硬盘的UUID：
+      
+         ```bash
+         sudo blkid
+         ```
+      
+         或者你也可以为硬盘设置一个标签，使用以下命令为硬盘设置一个标签：
+      
+         ```bash
+         sudo e2label /dev/sdX new_label
+         ```
+      
+      2. **编辑 `/etc/fstab` 文件**：
+      
+         打开 `/etc/fstab` 文件进行编辑，你可以使用任何文本编辑器，如 `nano` 或 `vim`：
+      
+         ```bash
+         sudo nano /etc/fstab
+         ```
+      
+         在文件的末尾添加类似以下行来挂载硬盘：
+      
+         ```plaintext
+         UUID=your_uuid_or_label /path/to/mount/point filesystem defaults 0 0
+         ```
+      
+         将 `your_uuid_or_label` 替换为你的硬盘的UUID或标签，将 `/path/to/mount/point` 替换为你想要挂载的目标路径，`filesystem` 替换为文件系统类型（比如 ext4、ntfs 等）。`defaults` 表示使用默认的挂载选项，`0 0` 表示不进行备份和检查。
+      
+         例如：
+      
+         ```plaintext
+         UUID=12345678-1234-1234-1234-123456789abc /mnt/mydisk ext4 defaults 0 0
+         ```
+      
+      3. **保存并退出编辑器**：
+      
+         在 `nano` 编辑器中，按下 `Ctrl + O` 来保存文件，然后按下 `Enter`，最后按下 `Ctrl + X` 来退出编辑器。
+      
+      4. **测试挂载**：
+      
+         运行以下命令来测试挂载：
+      
+         ```bash
+         sudo mount -a
+         ```
+      
+         如果没有报错，那么挂载就应该成功了。如果有错误，检查 `/etc/fstab` 中的内容是否正确。
+      
+      现在，当你重新启动系统时，硬盘应该会自动挂载到指定的目录下。使用 `/etc/fstab` 进行挂载比使用 `rclone` 挂载更稳定，适合持久化存储的需求。
