@@ -10,12 +10,7 @@ bash <(wget -qO- bash.spiritlhl.net/ecs)
 
 4.rclone
 curl https://rclone.org/install.sh | sudo bash
-apt install fuse -y
-apt install fuse3 -y
-wget -N git.io/rcloned && nano rcloned
-mv rcloned /etc/init.d/rcloned
-chmod +x /etc/init.d/rcloned
-bash /etc/init.d/rcloned start
+rclone mount local_disk1: /path/to/mount/point1 &
 
 5.aria2+rclone 自动上传
 wget -N git.io/aria2.sh && chmod +x aria2.sh && ./aria2.sh
