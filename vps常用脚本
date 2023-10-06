@@ -49,3 +49,28 @@ systemctl restart nginx
 8.德鸡
 echo -e "search blue.kundencontroller.de\noptions rotate\nnameserver 2a02:180:6:5::1c\nnameserver 2a02:180:6:5::4\nnameserver 2a02:180:6:5::1e\nnameserver 2a02:180:6:5::1d" > /etc/resolv.conf
 bash <(curl -s -L https://raw.githubusercontent.com/veip007/EUserv-warp/main/warp4.sh)
+
+9. 直播推流
+curl -fsSL get.kplayer.net | bash
+cd kplayer
+vim config.js
+{
+"version": "2.0.0",
+"resource": {
+"lists": [
+"/root/mp4/视频文件名.mp4"
+]
+},
+"play": {
+"play_model": "loop"
+},
+"output": {
+"lists": [
+{
+"path": "B站服务器地址和串流密钥"
+}
+]
+}
+}
+./kplayer play start --daemon
+
