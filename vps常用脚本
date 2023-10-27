@@ -1,6 +1,7 @@
 1.x-ui:
 bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)
 bash <(curl -sSL 19510272.xyz/sysctl)
+wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/mack-a/v2ray-agent/master/install.sh" && chmod 700 /root/install.sh && /root/install.sh
 
 2.alist: 
 curl -fsSL "https://alist.nn.ci/v3.sh" | bash -s install
