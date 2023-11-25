@@ -76,3 +76,5 @@ vim config.js
 }
 ./kplayer play start --daemon
 
+10. ipv6鸡
+mv /etc/resolv.conf /etc/resolv.conf.bak && echo -e "nameserver 2001:67c:2b0::4\nnameserver 2001:67c:2b0::6" > /etc/resolv.conf
