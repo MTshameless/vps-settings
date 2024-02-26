@@ -1,18 +1,23 @@
-1.x-ui:
+1.梯子安装:
+1.1 x-ui: 
 bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)
-bash <(curl -sSL 19510272.xyz/sysctl)
+1.2 vasma:
 wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/mack-a/v2ray-agent/master/install.sh" && chmod 700 /root/install.sh && /root/install.sh
+1.3 singbox
 bash <(wget -qO- https://raw.githubusercontent.com/fscarmen/sing-box/main/sing-box.sh)
 
-2.alist: 
+2.alist安装: 
 curl -fsSL "https://alist.nn.ci/v3.sh" | bash -s install
 
 3.vps测试
 bash <(wget -qO- bash.spiritlhl.net/ecs)
 
-4.rclone
+4.rclone命令
+4.1 rclone 安装
 curl https://rclone.org/install.sh | sudo bash
-rclone mount local_disk1: /path/to/mount/point1 &
+4.2 rclone 挂载目录
+rclone mount webdav:/ /data --cache-dir /tmp --allow-other --vfs-cache-mode writes --allow-non-empty
+
 
 5.aria2+rclone 自动上传
 wget -N git.io/aria2.sh && chmod +x aria2.sh && ./aria2.sh
@@ -47,10 +52,6 @@ nginx -t
 apt install certbot python3-certbot-nginx
 certbot --nginx
 systemctl restart nginx
-
-8.德鸡
-echo -e "search blue.kundencontroller.de\noptions rotate\nnameserver 2a02:180:6:5::1c\nnameserver 2a02:180:6:5::4\nnameserver 2a02:180:6:5::1e\nnameserver 2a02:180:6:5::1d" > /etc/resolv.conf
-bash <(curl -s -L https://raw.githubusercontent.com/veip007/EUserv-warp/main/warp4.sh)
 
 9. 直播推流
 curl -fsSL get.kplayer.net | bash
