@@ -48,26 +48,61 @@ jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root
 如果没有ipv6地址则执行：
 jupyter notebook --ip=:: --port=8888 --no-browser --allow-root
 
-7.nginx反代
+7.设置nginx反代
 apt install nginx
-nano /etc/nginx/sites-available/example.com.conf
-  server {
+cat cat <<EOF > /etc/nginx/sites-available/NAME.conf
+your_content
+server {
     listen 80;
-    server_name example.com;
+    server_name DOMAIN_NAME;
     
     location / {
-        proxy_pass http://localhost:3000; # 将请求转发到本地的3000端口
+        proxy_pass http://localhost:PORT;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
     }
   }
-ln -s /etc/nginx/sites-available/example.com.conf /etc/nginx/sites-enabled/
-nginx -t
+EOF 
+ln -s /etc/nginx/sites-available/NAME.conf /etc/nginx/sites-enabled/
 apt install certbot python3-certbot-nginx
 certbot --nginx
-systemctl restart nginx
+
+
+8. 为ipv6服务器添加ipv4出口
+首先执行：
+mv /etc/resolv.conf /etc/resolv.conf.bak && echo -e "nameserver 2001:67c:2b0::4\nnameserver 2001:67c:2b0::6" > /etc/resolv.conf
+然后再选择
+8.1 FSCARMEN
+wget -N https://gitlab.com/fscarmen/warp/-/raw/main/menu.sh && bash menu.sh
+8.2 P3TERX 
+bash <(curl -fsSL git.io/warp.sh) menu
+8.3 WARP-GO 
+wget -N https://raw.githubusercontent.com/fscarmen/warp/main/warp-go.sh && bash warp-go.sh
+8.4 MISAKA wget -N https://gitlab.com/Misaka-blog/warp-script/-/raw/main/warp.sh && bash warp.sh
+
+FSCARMEN (https://github.com/fscarmen/warp) :
+ - 首次运行 wget -N https://gitlab.com/fscarmen/warp/-/raw/main/menu.sh && bash menu.sh
+ - 日常维护 warp
+
+P3TERX (https://github.com/P3TERX/warp.sh) :
+ - 首次运行 bash <(curl -fsSL git.io/warp.sh) menu
+ - 日常维护 bash warp.sh
+
+WARP-GO (https://gitlab.com/ProjectWARP/warp-go/-/tree/master/) :
+ - 首次运行 wget -N https://raw.githubusercontent.com/fscarmen/warp/main/warp-go.sh && bash warp-go.sh
+ - 日常维护 warp-go
+
+MISAKA (https://gitlab.com/Misaka-blog/warp-script) :
+ - 首次运行 wget -N https://gitlab.com/Misaka-blog/warp-script/-/raw/main/warp.sh && bash warp.sh
+ - 日常维护 bash warp.sh
+
+9.docker和docker-compose安装
+curl -sSL https://get.docker.com/ | sh
+curl -L "https://github.com/docker/compose/releases/download/v2.23.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 9. 直播推流
 curl -fsSL get.kplayer.net | bash
@@ -92,25 +127,3 @@ vim config.js
 }
 }
 ./kplayer play start --daemon
-
-10. ipv6鸡
-mv /etc/resolv.conf /etc/resolv.conf.bak && echo -e "nameserver 2001:67c:2b0::4\nnameserver 2001:67c:2b0::6" > /etc/resolv.conf
-bash <(curl -fsSL git.io/warp.sh) 4
-WARP 各大一键脚本
-
-FSCARMEN (https://github.com/fscarmen/warp) :
- - 首次运行 wget -N https://gitlab.com/fscarmen/warp/-/raw/main/menu.sh && bash menu.sh
- - 日常维护 warp
-
-P3TERX (https://github.com/P3TERX/warp.sh) :
- - 首次运行 bash <(curl -fsSL git.io/warp.sh) menu
- - 日常维护 bash warp.sh
-
-WARP-GO (https://gitlab.com/ProjectWARP/warp-go/-/tree/master/) :
- - 首次运行 wget -N https://raw.githubusercontent.com/fscarmen/warp/main/warp-go.sh && bash warp-go.sh
- - 日常维护 warp-go
-
-MISAKA (https://gitlab.com/Misaka-blog/warp-script) :
- - 首次运行 wget -N https://gitlab.com/Misaka-blog/warp-script/-/raw/main/warp.sh && bash warp.sh
- - 日常维护 bash warp.sh
-
