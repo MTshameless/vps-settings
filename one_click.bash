@@ -142,19 +142,18 @@ case $choice in
         read -p "请输入端口号（例如PORT）: " port
 
         cat <<EOF > "/etc/nginx/sites-available/$nginx_name.conf"
-        your_content
-        server {
-            listen 80;
-            server_name $domain_name;
+            server {
+                listen 80;
+                server_name $domain_name;
 
-            location / {
-                proxy_pass http://localhost:$port;
-                proxy_set_header Host $host;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                proxy_set_header X-Forwarded-Proto $scheme;
+                location / {
+                    proxy_pass http://localhost:$port;
+                    proxy_set_header Host $host;
+                    proxy_set_header X-Real-IP $remote_addr;
+                    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                    proxy_set_header X-Forwarded-Proto $scheme;
+                }
             }
-        }
         EOF 
         ln -s "/etc/nginx/sites-available/$nginx_name.conf" "/etc/nginx/sites-enabled/"
         sudo apt install certbot python3-certbot-nginx
