@@ -155,7 +155,7 @@ case $choice in
                 proxy_set_header X-Forwarded-Proto $scheme;
             }
         }
-EOF 
+        EOF 
         ln -s "/etc/nginx/sites-available/$nginx_name.conf" "/etc/nginx/sites-enabled/"
         sudo apt install certbot python3-certbot-nginx
         certbot --nginx
