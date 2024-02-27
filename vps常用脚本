@@ -8,29 +8,45 @@ bash <(wget -qO- https://raw.githubusercontent.com/fscarmen/sing-box/main/sing-b
 
 2.alist安装: 
 curl -fsSL "https://alist.nn.ci/v3.sh" | bash -s install
+cd /opt/alist
+./alist admin set NEW_PASSWORD
 
 3.vps测试
+3.1 融合怪
 bash <(wget -qO- bash.spiritlhl.net/ecs)
+3.2 性能
+wget -qO- yabs.sh | bash
+3.3 网络
+bash <(curl -Lso- https://bench.im/hyperspeed)
+wget -N --no-check-certificate https://raw.githubusercontent.com/Chennhaoo/Shell_Bash/master/AutoTrace.sh && chmod +x AutoTrace.sh && bash AutoTrace.sh
+3.4 是否超售
+wget --no-check-certificate -O memoryCheck.sh https://raw.githubusercontent.com/uselibrary/memoryCheck/main/memoryCheck.sh && chmod +x memoryCheck.sh && bash memoryCheck.sh
 
-4.rclone命令
+4.rclone
 4.1 rclone 安装
 curl https://rclone.org/install.sh | sudo bash
-4.2 rclone 挂载目录
-rclone mount webdav:/ /data --cache-dir /tmp --allow-other --vfs-cache-mode writes --allow-non-empty
+4.2 rclone移动文件
+nohup rclone copy DRIVE_1:/FILENAME DRIVE_2:/FILENAME --ignore-existing &
+4.3 rclone挂载目录
+apt install fuse
+apt install fuse3
+mkdir /FILE
+nohup rclone mount FILE:/ /FILE --cache-dir /tmp --allow-other --vfs-cache-mode writes --allow-non-empty &
 
 
-5.aria2+rclone 自动上传
+5.aria2安装
 wget -N git.io/aria2.sh && chmod +x aria2.sh && ./aria2.sh
-nano /root/.aria2c/aria2.conf
-on-download-complete=/root/.aria2c/upload.sh 
-nano /root/.aria2c/script.conf
-drive-name=
 
-6.jupyter 安装（azure)
-sudo apt update
-sudo apt install python3 python3-pip
-sudo pip3 install jupyter
-jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser
+6.jupyter 安装
+apt install python3 python3-pip python3-venv
+mkdir code
+python3 -m venv env
+source env/bin/activate
+pip3 install jupyter
+如果服务器有ipv4地址则执行：
+jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root
+如果没有ipv6地址则执行：
+jupyter notebook --ip=:: --port=8888 --no-browser --allow-root
 
 7.nginx反代
 apt install nginx
