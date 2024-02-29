@@ -104,7 +104,7 @@ curl -L "https://github.com/docker/compose/releases/download/v2.23.3/docker-comp
 chmod +x /usr/local/bin/docker-compose
 ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
-9. 直播推流
+10. 直播推流
 curl -fsSL get.kplayer.net | bash
 cd kplayer
 vim config.js
@@ -127,3 +127,25 @@ vim config.js
 }
 }
 ./kplayer play start --daemon
+
+11.
+fallocate -l 1G /swapfile
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+swapon --show
+
+12.
+root        4405  0.0  1.5 1285800 31520 ?       Sl   Jan12   7:49 rclone mount tv: /tv
+root        6032  0.0  1.8 1285800 35948 ?       Sl   Jan13   5:42 rclone mount pikpak: /pikpak
+root      202447  0.0  4.1 1352956 81856 ?       Sl   Feb01  22:57 rclone mount people:/ /people --cache-dir /tmp --allow-other --vfs-cache-mode writes --allow-non-empty
+root      229408  0.0  3.2 1352700 64264 ?       Sl   Feb03  13:50 rclone mount cloud:/ /cloud --cache-dir /tmp --allow-other --vfs-cache-mode writes --allow-non-empty
+root      261446  0.0  3.4 1352956 69272 ?       Sl   Feb03  20:47 rclone mount marwen:/ /marwen --cache-dir /tmp --allow-other --vfs-cache-mode writes --allow-non-empty
+root      262836  0.0  3.5 1352700 70792 ?       Sl   Feb03  20:40 rclone mount jz:/ /jz --cache-dir /tmp --allow-other --vfs-cache-mode writes --allow-non-empty
+root      262914  0.0  3.5 1352700 70976 ?       Sl   Feb03  16:43 rclone mount cc:/ /cc --cache-dir /tmp --allow-other --vfs-cache-mode writes --allow-non-empty
+root      291034  0.0  3.8 1352700 75908 ?       Sl   Feb05  19:41 rclone mount tv-m:/ /tvm --cache-dir /tmp --allow-other --vfs-cache-mode writes --allow-non-empty
+root      307804  0.0  2.7 1352700 54964 ?       Sl   Feb06  17:40 rclone mount do:/ /do --cache-dir /tmp --allow-other --vfs-cache-mode writes --allow-non-empty
+root      324004  0.0  3.1 1352700 63328 ?       Sl   Feb08  10:40 rclone mount a1:/ /a1 --cache-dir /tmp --allow-other --vfs-cache-mode writes --allow-non-empty
+root      409912  0.0  4.3 1419344 87172 ?       Sl   Feb14  14:01 rclone mount jp:/ /jp --cache-dir /tmp --allow-other --vfs-cache-mode writes --allow-non-empty
+root      457260  0.0  2.7 1352700 54204 ?       Sl   Feb15   8:13 rclone mount ls:/ /ls --cache-dir /tmp --allow-other --vfs-cache-mode writes --allow-non-empty
