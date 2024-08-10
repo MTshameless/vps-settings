@@ -48,6 +48,21 @@ jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root
 如果没有ipv6地址则执行：
 jupyter notebook --ip=:: --port=8888 --no-browser --allow-root
 
+    location / {
+        proxy_pass http://localhost:8888;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        # websocket headers
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header X-Scheme $scheme;
+
+        proxy_buffering off;
+    }
+
 7.设置nginx反代
 apt install nginx
 cat cat <<EOF > /etc/nginx/sites-available/NAME.conf
