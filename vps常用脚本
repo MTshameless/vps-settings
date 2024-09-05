@@ -164,3 +164,6 @@ root      307804  0.0  2.7 1352700 54964 ?       Sl   Feb06  17:40 rclone mount 
 root      324004  0.0  3.1 1352700 63328 ?       Sl   Feb08  10:40 rclone mount a1:/ /a1 --cache-dir /tmp --allow-other --vfs-cache-mode writes --allow-non-empty
 root      409912  0.0  4.3 1419344 87172 ?       Sl   Feb14  14:01 rclone mount jp:/ /jp --cache-dir /tmp --allow-other --vfs-cache-mode writes --allow-non-empty
 root      457260  0.0  2.7 1352700 54204 ?       Sl   Feb15   8:13 rclone mount ls:/ /ls --cache-dir /tmp --allow-other --vfs-cache-mode writes --allow-non-empty
+
+13.
+curl -sSL https://get.docker.com/ | sh
