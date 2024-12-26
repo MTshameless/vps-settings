@@ -1,15 +1,11 @@
 1.梯子安装:
 1.1 x-ui: 
 bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)
-1.2 vasma:
-wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/mack-a/v2ray-agent/master/install.sh" && chmod 700 /root/install.sh && /root/install.sh
-1.3 singbox
+1.2 singbox
 bash <(wget -qO- https://raw.githubusercontent.com/fscarmen/sing-box/main/sing-box.sh)
 
 2.alist安装: 
 curl -fsSL "https://alist.nn.ci/v3.sh" | bash -s install
-cd /opt/alist
-./alist admin set NEW_PASSWORD
 
 3.vps测试
 3.1 融合怪
@@ -17,7 +13,6 @@ bash <(wget -qO- bash.spiritlhl.net/ecs)
 3.2 性能
 wget -qO- yabs.sh | bash
 3.3 网络
-bash <(curl -Lso- https://bench.im/hyperspeed)
 wget -N --no-check-certificate https://raw.githubusercontent.com/Chennhaoo/Shell_Bash/master/AutoTrace.sh && chmod +x AutoTrace.sh && bash AutoTrace.sh
 3.4 是否超售
 wget --no-check-certificate -O memoryCheck.sh https://raw.githubusercontent.com/uselibrary/memoryCheck/main/memoryCheck.sh && chmod +x memoryCheck.sh && bash memoryCheck.sh
@@ -65,8 +60,6 @@ jupyter notebook --ip=:: --port=8888 --no-browser --allow-root
 
 7.设置nginx反代
 apt install nginx
-cat cat <<EOF > /etc/nginx/sites-available/NAME.conf
-your_content
 server {
     listen 80;
     server_name DOMAIN_NAME;
@@ -79,7 +72,6 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
     }
   }
-EOF 
 ln -s /etc/nginx/sites-available/NAME.conf /etc/nginx/sites-enabled/
 apt install certbot python3-certbot-nginx
 certbot --nginx
@@ -119,29 +111,6 @@ curl -L "https://github.com/docker/compose/releases/download/v2.23.3/docker-comp
 chmod +x /usr/local/bin/docker-compose
 ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
-10. 直播推流
-curl -fsSL get.kplayer.net | bash
-cd kplayer
-vim config.js
-{
-"version": "2.0.0",
-"resource": {
-"lists": [
-"/root/mp4/视频文件名.mp4"
-]
-},
-"play": {
-"play_model": "loop"
-},
-"output": {
-"lists": [
-{
-"path": "B站服务器地址和串流密钥"
-}
-]
-}
-}
-./kplayer play start --daemon
 
 11.
 fallocate -l 1G /swapfile
@@ -150,9 +119,3 @@ mkswap /swapfile
 swapon /swapfile
 echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 swapon --show
-
-12.
-rclone mount alist:/ /alist --cache-dir /tmp --allow-other --vfs-cache-mode writes --allow-non-empty
-
-13.
-curl -sSL https://get.docker.com/ | sh
