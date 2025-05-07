@@ -107,9 +107,28 @@ MISAKA (https://gitlab.com/Misaka-blog/warp-script) :
 
 9.docker和docker-compose安装
 curl -sSL https://get.docker.com/ | sh
-curl -L "https://github.com/docker/compose/releases/download/v2.23.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+docker ps
+docker compose up -d
+
+10.node
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+apt install -y nodejs
+apt install -y git
+git clone https://github.com/.......git
+chown -R your-username:your-username ......
+cd ......
+npm install
+npm run build
+npm install -g pm2
+pm2 start npm --name "writing-helper" -- run start
+pm2 save
+pm2 startup
+pm2 list
+apt install -y ufw
+sudo ufw allow 80
+sudo ufw allow 443
+sudo ufw allow 22  # For SSH access
+ufw enable
 
 
 11.
